@@ -6,6 +6,14 @@
   --font-serif: "DM Serif Display", "serif";
 }
 
+@utility text-clamp {
+  font-size: clamp(3rem, 0.8571rem + 10.7143vw, 6rem);
+}
+
+@utility text-clamp-sm {
+  font-size: clamp(1rem, 0.6429rem + 1.7857vw, 1.5rem);
+}
+
 @utility text-shadow {
   -webkit-text-stroke-width: 0.125rem;
   -moz-text-stroke-width: 0.125rem;
@@ -36,7 +44,7 @@
 }
 
 p {
-  @apply text-2xl leading-12;
+  @apply leading-10 text-clamp-sm;
   
   & + & { @apply mt-5; }
 }
