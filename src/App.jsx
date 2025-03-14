@@ -1,33 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Heading from "./atoms/Heading"
+import Anchor from "./atoms/Anchor"
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+      <main className="max-w-3xl mx-auto pt-20 relative">
+        <Heading as="h1">Self Pressed.</Heading>
+        <p className="mt-10">
+          I’m <Anchor href="http://linkedin.com/in/selfpressed" target="_blank">Travis Self</Anchor>, a web developer and podcaster from Dallas. I build websites and lead a small team of Front End Engineers at <Anchor href="http://lifeblue.com/" target="_blank">Lifeblue</Anchor>, where we enable companies to grow their social, cultural and economic impact in the world.
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <p>
+          You can hear me chat about music on <Anchor href="https://cms.megaphone.fm/channel/nofiller" target="_blank">No Filler</Anchor>, and interview web devs and tech professionals on <Anchor href="https://soundcloud.com/600px" target="_blank">600px</Anchor>.
+        </p>
+      </main>
     </>
   )
 }
