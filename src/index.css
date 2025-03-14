@@ -11,6 +11,7 @@
 }
 
 @utility text-clamp-sm {
+  @apply leading-10;
   font-size: clamp(1rem, 0.6429rem + 1.7857vw, 1.5rem);
 }
 
@@ -20,6 +21,10 @@
   -webkit-text-stroke-color: var(--color-gray-800);
   -moz-text-stroke-color: var(--color-gray-800);
   text-shadow: 6px 6px var(--color-cyan-300);
+}
+
+@utility wrapper {
+  @apply max-w-3xl mx-auto
 }
 
 .animate-line {
@@ -43,8 +48,6 @@
   } 
 }
 
-p {
-  @apply leading-10 text-clamp-sm;
-  
+p {  
   & + & { @apply mt-5; }
 }
