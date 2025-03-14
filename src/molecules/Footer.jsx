@@ -9,7 +9,7 @@ export default function Footer() {
       <Anchor aria-label="Visit my GitHub profile." href="https://github.com/travis-self" target="_blank">
         <FontAwesomeIcon className="text-xl" icon={faGithub} />
       </Anchor>
-      <Anchor aria-label="Visit my LinkedIn profile." href="https://linked.com/selfpressed" target="_blank">
+      <Anchor aria-label="Visit my LinkedIn profile." href="https://linkedin.com/in/selfpressed/" target="_blank">
         <FontAwesomeIcon className="text-xl" icon={faLinkedin} />
       </Anchor>
       <Anchor aria-label="Listen to my podcast on Spotify." href="https://open.spotify.com/show/3ziSGjCcMXeXyXe9GLfWHp?si=10a63e32bc314b4c" target="_blank">
