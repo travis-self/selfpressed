@@ -1,12 +1,13 @@
 import Anchor from "./atoms/Anchor"
 import Footer from "./molecules/Footer"
 import Heading from "./atoms/Heading"
+import Nav from "./molecules/Nav"
 
 function App() {
-
   return (
     <>
-      <main className="pt-20 px-10 relative wrapper">
+      <Nav />
+      <main className={`pt-20 px-10 relative dark:text-white wrapper`}>
         <Heading as="h1">Self Pressed.</Heading>
         <p className="mt-10 text-clamp-sm">
           I’m <Anchor href="http://linkedin.com/in/selfpressed" target="_blank">Travis Self</Anchor>, a web developer and podcaster from Dallas. I build websites and lead a small team of Front End Engineers at <Anchor href="http://lifeblue.com/" target="_blank">Lifeblue</Anchor>, where we enable companies to grow their social, cultural and economic impact in the world.
