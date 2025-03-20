@@ -8,8 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Travis Self - Front End Craftsman, podcaster, coffee drinker.</title>
   </head>
-  <body class="bg-gray-100">
+  <body class="bg-gray-100 dark:bg-slate-800">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
+  <script>
+    if (localStorage.getItem('darkmode') === 'true') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
 </html>
