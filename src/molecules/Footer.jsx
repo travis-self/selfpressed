@@ -16,7 +16,7 @@ export default function Footer() {
         <FontAwesomeIcon className="text-xl" icon={faSpotify} />
       </Anchor>
     </div>
-    <p className="text-gray-500 text-center text-sm">
+    <p className="text-gray-500 text-center text-sm dark:text-white">
       &copy; {year} - Travis Self.
     </p>
   </footer>
