@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie';
+import { getEnvVariable } from '../../utils/env';
 import { motion } from 'motion/react'
 
 import { createAlphabet, createGuesses, evaluateLetters, getCookieExpiration, getNewGuess } from './WordleHelpers'
@@ -13,6 +14,8 @@ function Wordle() {
   const [answer, setAnswer] = useState('')
   const [alphabet, setAlphabet] = useState(() => createAlphabet())
   const [cookies, setCookie] = useCookies(['answer'])
+
+  const wordnikKey = getEnvVariable("WORDNIK_KEY");
 
   useEffect(() => {
     if (cookies.answer) {
@@ -46,12 +49,21 @@ function Wordle() {
   }
 
   function handleSubmit(formData) {
-    if (words.includes(formData.get("guess"))) {
-      setGuesses(handleGuess(attempt, formData.get("guess")))
-      setAttempt(attempt + 1)
-    } else {
-      alert("Not in word list");
-    }
+    fetch(`https://api.wordnik.com/v4/word.json/${formData.get("guess").toLowerCase()}/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=${wordnikKey}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HRRP error! Status: ${res.status}`)
+        }
+
+        return res.json();
+      }).then((data) => {
+        if (data[0] && data[0].word) { // valid word
+          setGuesses(handleGuess(attempt, data[0].word))
+          setAttempt(attempt + 1)
+        } else {
+          alert("Word not found!");
+        }
+      })
   }
 
   return <div className="mx-auto w-1/2">
