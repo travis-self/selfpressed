@@ -1,23 +1,20 @@
-import Anchor from "./atoms/Anchor"
-import Footer from "./molecules/Footer"
-import Heading from "./atoms/Heading"
-import Nav from "./molecules/Nav"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Layout from "./layout/Layout"
+import Home from "./pages/Home"
+import Slides from "./pages/Slides"
+import Wordle from "./pages/Wordle"
 
 function App() {
   return (
-    <>
-      <Nav />
-      <main className={`pt-20 px-10 relative dark:text-white wrapper`}>
-        <Heading as="h1">Self Pressed.</Heading>
-        <p className="mt-10 text-clamp-sm">
-          I’m <Anchor href="http://linkedin.com/in/selfpressed" target="_blank">Travis Self</Anchor>, a web developer and podcaster from Dallas. I build websites and lead a small team of Front End Engineers at <Anchor href="http://lifeblue.com/" target="_blank">Lifeblue</Anchor>, where we enable companies to grow their social, cultural and economic impact in the world.
-        </p>
-        <p className="text-clamp-sm">
-          You can hear me chat about music on <Anchor href="https://cms.megaphone.fm/channel/nofiller" target="_blank">No Filler</Anchor>, and interview web devs and tech professionals on <Anchor href="https://soundcloud.com/600px" target="_blank">600px</Anchor>.
-        </p>
-      </main>
-      <Footer />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />}  />
+          <Route path="/playground" element={<Wordle />}  />
+          <Route path="/slides" element={<Slides />}  />
+        </Route>
+      </Routes>
+    </Router>
   )
 }
 
