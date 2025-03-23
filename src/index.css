@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  --body-color: var(--color-white);
+  --body-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
   --font-sans: "DM Sans", "sans";
   --font-display: "Crete Round", "serif";
   --font-serif: "DM Serif Display", "serif";
@@ -12,10 +14,12 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 .dark {
+  --body-color: var(--color-slate-800);
+  --body-image: linear-gradient(160deg, var(--color-slate-800) 0%, var(--color-slate-700) 100%);
   --interactive-color: var(--color-cyan-300);
   --interactive-hover-color: var(--color-indigo-300);
-  --text-shadow-stroke: var(--color-white);
-  --text-shadow-fill: var(--color-cyan-300);
+  --text-shadow-stroke: var(--color-gray-100);
+  --text-shadow-fill: var(--color-cyan-500);
 }
 
 @utility text-clamp {
@@ -32,11 +36,21 @@
   -moz-text-stroke-width: 0.125rem;
   -webkit-text-stroke-color: var(--text-shadow-stroke);
   -moz-text-stroke-color: var(--text-shadow-stroke);
-  text-shadow: 6px 6px var(--text-shadow-fill);
+  text-shadow: 5px 5px var(--text-shadow-fill);
 }
 
 @utility wrapper {
   @apply max-w-3xl mx-auto
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  background-color: var(--body-color);
+  background-image: var(--body-image);
 }
 
 .animate-line {

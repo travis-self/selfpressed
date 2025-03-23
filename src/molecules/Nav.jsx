@@ -25,7 +25,7 @@ export default function Nav() {
     <nav className="flex justify-end p-2">
       {/* TODO: Move toggle into a separate component once Nav is built out. */}
       <div className="relative w-16">
-        <label id="toggle-dark-mode" className={`bg-linear-to-r from-gray-300 to-white border-2 border-gray-400 flex ${togglePosition} p-1 relative rounded-3xl w-full dark:from-slate-800 dark:to-slate-900 dark:border-cyan-300`}>
+        <label id="toggle-dark-mode" className={`border-2 border-gray-400 flex ${togglePosition} p-1 relative rounded-3xl w-full dark:border-cyan-300`}>
           <motion.div className="bg-gray-400 flex items-center justify-center rounded-full size-6 dark:bg-cyan-400"
             layout
             transition={{
