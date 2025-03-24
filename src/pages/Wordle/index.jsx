@@ -73,7 +73,7 @@ function Wordle() {
 
   }
 
-  return <div className="mx-auto transform -translate-y-10 w-1/2">
+  return <div className="mx-auto transform -translate-y-10 md:w-1/2">
     <div className="gap-y-2 grid grid-cols-1">
       {guesses.map((word, i) => (
         <WordleGuess attempt={attempt} guess={word} iteration={i + 1} key={i}  />
