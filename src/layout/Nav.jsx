@@ -39,18 +39,22 @@ export default function Nav() {
     }
   ];
 
+  const enableNav = false
+
   return (
     <nav className="flex items-center not-only:justify-between p-2">
-      <ul className="flex gap-5">
-        {links.map(link => 
-          <li>
-            <Link className="animate-line flex gap-2 group items-center relative dark:text-white" to={link.path}>
-              <FontAwesomeIcon className="group-hover:text-cyan-500 dark:group-hover:text-cyan-300" icon={link.icon} />
-              {link.text}
-            </Link>
-          </li>
-        )}
-      </ul>
+      {enableNav && (
+        <ul className="flex gap-5">
+          {links.map(link => 
+            <li>
+              <Link className="animate-line flex gap-2 group items-center relative dark:text-white" to={link.path}>
+                <FontAwesomeIcon className="group-hover:text-cyan-500 dark:group-hover:text-cyan-300" icon={link.icon} />
+                {link.text}
+              </Link>
+            </li>
+          )}
+        </ul>
+      )}
       {/* TODO: Move toggle into a separate component once Nav is built out. */}
       <div className="ml-auto relative w-16">
         <label id="toggle-dark-mode" className={`bg-linear-to-r from-gray-300 to-white border-2 border-gray-400 flex ${togglePosition} p-1 relative rounded-3xl w-full dark:from-slate-800 dark:to-slate-900 dark:border-cyan-300`}>
