@@ -44,8 +44,8 @@ export default function Nav() {
       <ul className="flex gap-5">
         {links.map(link => 
           <li>
-            <Link className="animate-line flex gap-2 group items-center relative" to={link.path}>
-              <FontAwesomeIcon className="group-hover:text-cyan-500" icon={link.icon} />
+            <Link className="animate-line flex gap-2 group items-center relative dark:text-white" to={link.path}>
+              <FontAwesomeIcon className="group-hover:text-cyan-500 dark:group-hover:text-cyan-300" icon={link.icon} />
               {link.text}
             </Link>
           </li>

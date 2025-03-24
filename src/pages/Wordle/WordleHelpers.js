@@ -25,14 +25,14 @@ export function evaluateLetters(guess, answer) {
   let ret = [];
   
   test.letters.forEach((l,i) => {
-    let color = "bg-gray-800 text-gray-500";
+    let color = "bg-gray-800 text-gray-500 dark:bg-black";
     tally[l] = (tally[l] || 0) + 1;
 
     if (control.letters[i] === l) {
-      color = "bg-green-400"
+      color = "bg-green-400 dark:bg-emerald-600"
     } else if (control.letters.includes(l)) {
       if (tally[l] <= control.count[l]) {
-        color = "bg-yellow-300"
+        color = "bg-yellow-300 dark:bg-amber-300 dark:text-gray-600"
       }
     }
 

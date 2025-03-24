@@ -75,7 +75,7 @@ function Wordle() {
 
   }
 
-  return <div className="mx-auto w-1/2">
+  return <div className="mx-auto transform -translate-y-10 w-1/2">
     <div className="gap-y-2 grid grid-cols-1">
       {guesses.map((word, i) => (
         <WordleGuess attempt={attempt} guess={word} iteration={i + 1} key={i}  />
@@ -84,7 +84,7 @@ function Wordle() {
     <form className="mt-10" action={handleSubmit}>
       <input
         autoFocus
-        className="bg-transparent block border-2 border-x-0 border-t-0 text-xl uppercase w-full"
+        className="bg-transparent block border-2 border-x-0 border-t-0 text-xl uppercase w-full dark:text-white"
         maxLength={5}
         name="guess"
         type="text"
