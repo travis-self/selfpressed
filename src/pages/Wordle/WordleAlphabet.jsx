@@ -14,7 +14,7 @@ export default function WordleAlphabet({letters}) {
         }}
       >
         {row.split("").map((l, ii) => 
-          <div className={`aspect-square p-2 rounded-sm ${letters[l]} uppercase`} key={ii}>{l}</div>
+          <div className={`aspect-square p-2 rounded-sm ${letters[l]} uppercase md:p-4`} key={ii}>{l}</div>
         )}
       </motion.div>
     )}
