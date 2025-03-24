@@ -25,14 +25,14 @@ export function evaluateLetters(guess, answer) {
   let ret = [];
   
   test.letters.forEach((l,i) => {
-    let color = "bg-gray-800 text-gray-400";
+    let color = "bg-gray-800 text-gray-500";
     tally[l] = (tally[l] || 0) + 1;
 
     if (control.letters[i] === l) {
-      color = "bg-green-400"
+      color = "bg-cyan-400"
     } else if (control.letters.includes(l)) {
       if (tally[l] <= control.count[l]) {
-        color = "bg-yellow-300"
+        color = "bg-indigo-400 text-white"
       }
     }
 
@@ -70,4 +70,18 @@ export function getCookieExpiration() {
   const date = new Date();
   date.setHours(23, 59, 59, 999);
   return date;
+}
+
+export function getDialogContent(key = 0, answer) {
+  const content = {
+    0: "Word not found! Try again.",
+    1: "Wow! You're a genius! Or you know how to check your browser cookies.",
+    2: "Only 2 guesses? That is very impressive. You must read a lot of books!",
+    3: "Very respectable. Better than most! Next time you'll get it in 2, I just know it.",
+    4: "Slow and steady wins the race!",
+    5: "Wow, that was a close one! I thought you were a goner!",
+    6: `Sorry! The answer is "${answer.toUpperCase()}". Better luck next time!`
+  }
+
+  return content[key];
 }

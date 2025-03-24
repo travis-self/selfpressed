@@ -6,6 +6,7 @@ import { createAlphabet, createGuesses, evaluateLetters, getCookieExpiration, ge
 import { answers, wordnik } from './words'
 import WordleAlphabet from './WordleAlphabet';
 import WordleGuess from './WordleGuess';
+import Dialog from '../../molecules/Dialog';
 
 function Wordle() {
   const [guesses, setGuesses] = useState(() => createGuesses());
@@ -13,6 +14,8 @@ function Wordle() {
   const [answer, setAnswer] = useState('')
   const [alphabet, setAlphabet] = useState(() => createAlphabet())
   const [cookies, setCookie] = useCookies(['answer'])
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalContent, setModalContent] = useState(0)
 
   useEffect(() => {
     if (cookies.answer) {
@@ -45,15 +48,31 @@ function Wordle() {
     setAlphabet({...alphabet, ...guessed});
   }
 
+  function handleCloseModal() {
+    setModalOpen(false)
+  }
+
   function handleSubmit(formData) {
     const guess = formData.get("guess");
 
+    console.log(`guess: ${guess}`)
+
     if (wordnik.includes(guess) || answers.includes(guess)) { // valid word
       setGuesses(handleGuess(attempt, guess))
-      setAttempt(attempt + 1)
+      setAttempt(prevAttempt => prevAttempt + 1)
+
+      if (guess === answer) {
+        setModalOpen(true)
+        setModalContent(attempt + 1)
+      } else if ((attempt + 1) === 5) {
+        setModalOpen(true)
+        setModalContent(6)
+      }
     } else {
-      alert("Word not found!");
+      setModalOpen(true)
+      setModalContent(0)
     }
+
   }
 
   return <div className="mx-auto w-1/2">
@@ -68,12 +87,11 @@ function Wordle() {
         className="bg-transparent block border-2 border-x-0 border-t-0 text-xl uppercase w-full"
         maxLength={5}
         name="guess"
-        // onChange={ev => console.log(ev)}
         type="text"
       />
       <div className="flex gap-2 mt-2">
-        <button className="grow w-1/2" type="submit">Enter</button>
-        <button type="button" onClick={() => {
+        <button className="button-primary grow w-1/2" type="submit">Enter</button>
+        <button className="button-secondary" type="button" onClick={() => {
           setGuesses(() => createGuesses())
           setAlphabet(() => createAlphabet())
           setAttempt(0)
@@ -81,6 +99,7 @@ function Wordle() {
       </div>
     </form>
     <WordleAlphabet letters={alphabet} />
+    <Dialog answer={answer} onCloseModal={handleCloseModal} contentKey={modalContent} isOpen={modalOpen} />
   </div>;
 }
 
