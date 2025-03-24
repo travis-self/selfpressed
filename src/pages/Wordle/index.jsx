@@ -55,8 +55,6 @@ function Wordle() {
   function handleSubmit(formData) {
     const guess = formData.get("guess");
 
-    console.log(`guess: ${guess}`)
-
     if (wordnik.includes(guess) || answers.includes(guess)) { // valid word
       setGuesses(handleGuess(attempt, guess))
       setAttempt(prevAttempt => prevAttempt + 1)
@@ -83,6 +81,7 @@ function Wordle() {
     </div>
     <form className="mt-10" action={handleSubmit}>
       <input
+        autoComplete="off"
         autoFocus
         className="bg-transparent block border-2 border-x-0 border-t-0 text-xl uppercase w-full dark:text-white"
         maxLength={5}
