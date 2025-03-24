@@ -29,10 +29,10 @@ export function evaluateLetters(guess, answer) {
     tally[l] = (tally[l] || 0) + 1;
 
     if (control.letters[i] === l) {
-      color = "bg-cyan-400"
+      color = "bg-green-400"
     } else if (control.letters.includes(l)) {
       if (tally[l] <= control.count[l]) {
-        color = "bg-indigo-400 text-white"
+        color = "bg-yellow-300"
       }
     }
 
