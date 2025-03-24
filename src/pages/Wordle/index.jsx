@@ -18,7 +18,7 @@ function Wordle() {
     if (cookies.answer) {
       setAnswer(cookies.answer)
     } else {
-      const randomWord = words[Math.floor(Math.random() * words.length)]
+      const randomWord = answers[Math.floor(Math.random() * answers.length)]
       setCookie('answer', randomWord, { expires: getCookieExpiration() })
       setAnswer(randomWord);
     }
