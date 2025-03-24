@@ -10,9 +10,6 @@ export default function Nav() {
     const preference = localStorage.getItem('darkmode');
     return preference ? JSON.parse(preference) : false;
   })
-
-  // temporary
-  const enableNav = false;
   
   useEffect(() => {
     localStorage.setItem('darkmode', darkmode)
@@ -24,31 +21,36 @@ export default function Nav() {
     }
   }, [darkmode])
   const togglePosition = darkmode ? 'justify-end' : 'justify-start';
+  const links = [
+    {
+      icon: faHome,
+      path: "/",
+      text: "Home",
+    },
+    {
+      icon: faGamepad,
+      path: "/playground",
+      text: "Playground",
+    },
+    {
+      icon: faPersonChalkboard,
+      path: "/slides",
+      text: "Slides",
+    }
+  ];
 
   return (
     <nav className="flex items-center not-only:justify-between p-2">
-      {enableNav && (
-        <ul className="flex gap-4">
+      <ul className="flex gap-5">
+        {links.map(link => 
           <li>
-            <Link className="flex gap-2 items-center" to="/">
-              <FontAwesomeIcon icon={faHome} />
-              Home
+            <Link className="animate-line flex gap-2 group items-center relative" to={link.path}>
+              <FontAwesomeIcon className="group-hover:text-cyan-500" icon={link.icon} />
+              {link.text}
             </Link>
           </li>
-          <li>
-            <Link className="flex gap-2 items-center" to="/playground">
-              <FontAwesomeIcon icon={faGamepad} />
-              Playground
-            </Link>
-          </li>
-          <li>
-            <Link className="flex gap-2 items-center" to="/slides">
-              <FontAwesomeIcon icon={faPersonChalkboard} />
-              Slides
-            </Link>
-          </li>
-        </ul>
-      )}
+        )}
+      </ul>
       {/* TODO: Move toggle into a separate component once Nav is built out. */}
       <div className="ml-auto relative w-16">
         <label id="toggle-dark-mode" className={`bg-linear-to-r from-gray-300 to-white border-2 border-gray-400 flex ${togglePosition} p-1 relative rounded-3xl w-full dark:from-slate-800 dark:to-slate-900 dark:border-cyan-300`}>
