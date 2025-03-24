@@ -4,7 +4,7 @@ import Anchor from "../atoms/Anchor"
 export default function Home() {
   return (
     <>
-      <Heading as="h1">Self Pressed.</Heading>
+      <Heading as="h1">Selfpressed.</Heading>
       <p className="mt-10 text-clamp-sm">
         I’m <Anchor href="http://linkedin.com/in/selfpressed" target="_blank">Travis Self</Anchor>, a web developer and podcaster from Dallas. I build websites and lead a small team of Front End Engineers at <Anchor href="http://lifeblue.com/" target="_blank">Lifeblue</Anchor>, where we enable companies to grow their social, cultural and economic impact in the world.
       </p>
