@@ -63,3 +63,16 @@
 p {  
   & + & { @apply mt-5; }
 }
+
+.button-primary,
+.button-secondary {
+  @apply cursor-pointer text-sm text-white p-2 rounded-md uppercase;
+}
+
+.button-primary {
+  @apply bg-cyan-700 hover:bg-cyan-600
+}
+
+.button-secondary {
+  @apply bg-slate-700 hover:bg-black
+}
