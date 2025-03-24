@@ -19,7 +19,7 @@ export default function Dialog({answer, contentKey, isOpen, onCloseModal}) {
   return <>
     <dialog className="absolute bg-slate-800 left-1/2 p-5 rounded-xl shadow-2xl text-white transform -translate-x-1/2 top-1/5 w-1/2 backdrop:bg-slate-950/70" ref={ref}>
       <div className="flex justify-end">
-        <button className="bg-cyan-700 text-sm text-white p-2 rounded-md uppercase hover:bg-cyan-800" onClick={() => onCloseModal()}>
+        <button className="button-primary" onClick={() => onCloseModal()}>
           Close
         </button>
       </div>

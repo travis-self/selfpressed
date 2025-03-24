@@ -90,8 +90,8 @@ function Wordle() {
         type="text"
       />
       <div className="flex gap-2 mt-2">
-        <button className="grow w-1/2" type="submit">Enter</button>
-        <button type="button" onClick={() => {
+        <button className="button-primary grow w-1/2" type="submit">Enter</button>
+        <button className="button-secondary" type="button" onClick={() => {
           setGuesses(() => createGuesses())
           setAlphabet(() => createAlphabet())
           setAttempt(0)
