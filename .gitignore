@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 .vercel
 .env
+
+.vscode/
+setup.sh
+.setup-backup-*/
