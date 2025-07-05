@@ -8,7 +8,12 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "pre-commit-check": "lint-staged",
+    "lint:js": "eslint '**/*.{js,jsx}' --fix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -38,5 +43,17 @@
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
     "vite": "^6.2.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,css,scss,md,yml,yaml}": [
+      "prettier --write"
+    ],
+    "package.json": [
+      "npm audit fix --audit-level moderate"
+    ]
   }
 }
