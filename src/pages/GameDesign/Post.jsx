@@ -58,7 +58,7 @@ export default function PostDetail() {
     : null;
 
   return (
-    <main className='mx-auto min-h-screen max-w-3xl p-8'>
+    <article className='md:p-8'>
       <Link to='/game-design' className='mb-8 inline-block hover:underline'>
         ← Back to blog
       </Link>
@@ -89,6 +89,6 @@ export default function PostDetail() {
           <PortableText value={post.body} components={portableTextComponents} />
         )}
       </div>
-    </main>
+    </article>
   );
 }
