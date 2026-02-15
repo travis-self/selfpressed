@@ -59,7 +59,7 @@ export default function PostDetail() {
 
   return (
     <article className='md:p-8'>
-      <Link to='/game-design' className='mb-8 inline-block hover:underline'>
+      <Link to='/flavor-text' className='mb-8 inline-block hover:underline'>
         ← Back to blog
       </Link>
       {imageUrl && (
@@ -82,7 +82,7 @@ export default function PostDetail() {
             ></span>
           </>
         )}
-        <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
+        <p>Published: <time>{new Date(post.publishedAt).toLocaleDateString()}</time></p>
       </div>
       <div className='grid gap-y-5 mt-8 text-lg'>
         {Array.isArray(post.body) && (

@@ -45,6 +45,13 @@ export default defineType({
       type: 'datetime',
     }),
     defineField({
+      name: 'excerpt',
+      description: 'Short blurb that appears on post molecules',
+      title: 'Excerpt',
+      type: 'text',
+      rows: 2,
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',

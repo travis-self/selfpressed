@@ -1,8 +1,10 @@
 export default function Heading(props) { 
-  const { as: Tag = 'h1', children } = props
+  const { as: Tag = 'h1', children, className } = props
   const styles = {
-    h1: 'text-clamp text-shadow text-transparent'
+    logo: 'font-display text-clamp text-shadow text-transparent',
+    h1: 'font-display text-6xl tracking-wider',
+    h2: 'text-xl'
   }
 
-  return <Tag className={`font-display ${styles[Tag]} text-`}>{children}</Tag>
+  return <Tag className={`${styles[className] ? styles[className] : styles[Tag]} text-`}>{children}</Tag>
 }

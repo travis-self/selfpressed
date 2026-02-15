@@ -4,6 +4,7 @@ import Layout from './layout/Layout';
 import Home from './pages/Home';
 import Slides from './pages/Slides';
 import Wordle from './pages/Wordle';
+import Blog from './pages/Blog'
 import PostDetail from './pages/GameDesign/Post';
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
             <Route index element={<Home />} />
             <Route path='/playground' element={<Wordle />} />
             <Route path='/slides' element={<Slides />} />
-            <Route path='/game-design/:postSlug' element={<PostDetail />} />
+            <Route path='/flavor-text' element={<Blog />} />
+            <Route path='/flavor-text/:postSlug' element={<PostDetail />} />
           </Route>
         </Routes>
       </Router>
