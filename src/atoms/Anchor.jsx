@@ -5,7 +5,7 @@ let classes = `font-bold relative dark:text-cyan-300 ${className || ''}`
   if (animate) {
     classes += ' animate-line'
   } else {
-    classes += ' hover:text-indigo-500'
+    classes += ' hover:text-indigo-500 dark:hover:text-indigo-300'
   }
 
   return <Link className={ classes } to={href} target={target}>

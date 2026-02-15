@@ -14,8 +14,8 @@
 .dark {
   --interactive-color: var(--color-cyan-300);
   --interactive-hover-color: var(--color-indigo-300);
-  --text-shadow-stroke: var(--color-white);
-  --text-shadow-fill: var(--color-cyan-300);
+  --text-shadow-stroke: var(--color-indigo-300);
+  --text-shadow-fill: var(--color-transparent);
 }
 
 @utility text-clamp {

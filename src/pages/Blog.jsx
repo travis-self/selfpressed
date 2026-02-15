@@ -44,16 +44,16 @@ export default function Blog() {
 
   return (
     <>
-      <hgroup className="flex flex-col gap-y-2 items-center">
+      <hgroup className="flex flex-col gap-y-2 md:items-center">
         <div className="flex gap-x-4 items-end">
-          <div className="text-indigo-500">
+          <div className="text-indigo-500 dark:text-cyan-300">
             <D6 size="text-5xl" />
           </div>
           <Heading as='h1'>
             Flavor Text
           </Heading>
         </div>
-        <h2 className="text-center text-lg w-1/2">Musings on game design, and the official dev diary for Joker&apos;s Dozen</h2>
+        <h2 className="text-lg md:text-center md:w-1/2">Musings on game design, and the official dev diary for Joker&apos;s Dozen</h2>
       </hgroup>
       <section className='mt-15'>
         <ul className="grid grid-cols-1 gap-y-8">

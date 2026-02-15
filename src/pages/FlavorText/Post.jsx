@@ -77,7 +77,7 @@ export default function PostDetail() {
   return (
     <>
     <article className='md:p-8'>
-      <Anchor href='/flavor-text' className='gap-x-1 inline-flex items-center mb-8'>
+      <Anchor href='/flavor-text' className='gap-x-1 inline-flex items-center mb-8 dark:hover:text-white'>
         <FontAwesomeIcon icon={faArrowLeft} />Back to blog
       </Anchor>
       {post.hero && (
@@ -94,7 +94,7 @@ export default function PostDetail() {
             <p>By {post.author.name}</p>
             <span
               aria-hidden='true'
-              className='py-3 border-black border-r-2'
+              className='py-3 border-black border-r-2 dark:border-white'
             ></span>
           </>
         )}
@@ -108,9 +108,9 @@ export default function PostDetail() {
     </article>
     {(nav.prev || nav.next)
       ? 
-      <nav className="flex justify-between">
-        {nav.prev ? <Anchor className="flex gap-x-2 items-center" href={`/flavor-text/${nav.prev.slug.current}`}><FontAwesomeIcon icon={faArrowLeft} /><span>Prev: {nav.prev.title}</span></Anchor> : ''}
-        {nav.next ? <Anchor className="flex flex-row-reverse gap-x-2 items-center ml-auto" href={`/flavor-text/${nav.next.slug.current}`}><FontAwesomeIcon icon={faArrowRight} /><span>Next: {nav.next.title}</span></Anchor> : ''}
+      <nav className="mt-10 flex justify-between">
+        {nav.prev ? <Anchor className="flex gap-x-2 items-center dark:hover:text-white" href={`/flavor-text/${nav.prev.slug.current}`}><FontAwesomeIcon icon={faArrowLeft} /><span>Prev: {nav.prev.title}</span></Anchor> : ''}
+        {nav.next ? <Anchor className="flex flex-row-reverse gap-x-2 items-center ml-auto dark:hover:text-white" href={`/flavor-text/${nav.next.slug.current}`}><FontAwesomeIcon icon={faArrowRight} /><span>Next: {nav.next.title}</span></Anchor> : ''}
       </nav>
       : ''
     }
