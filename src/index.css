@@ -54,10 +54,16 @@
     transition: width 500ms ease-in-out;
     width: 0;
   }
+}
 
+.animate-line:not(.animate-line-group) {
   &:is(:focus, :hover)::before {
     width: 100%;
   }
+}
+
+.group:is(:focus, :hover) .animate-line-group::before {
+  width: 100%;
 }
 
 .button-primary,
