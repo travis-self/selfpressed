@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGamepad, faHome, faMoon, faPersonChalkboard } from "@fortawesome/free-solid-svg-icons";
+import { faBookSkull, faHome, faMoon } from "@fortawesome/free-solid-svg-icons";
 
 import { motion } from "motion/react"
 import { Link } from "react-router-dom";
@@ -28,28 +28,25 @@ export default function Nav() {
       text: "Home",
     },
     {
-      icon: faGamepad,
-      path: "/playground",
-      text: "Playground",
+      icon: faBookSkull,
+      path: "/flavor-text",
+      text: "Flavor Text  ",
     },
-    {
-      icon: faPersonChalkboard,
-      path: "/slides",
-      text: "Slides",
-    }
   ];
 
-  const enableNav = false
+  const enableNav = true
 
   return (
-    <nav className="flex items-center not-only:justify-between p-2">
+    <nav className="flex items-center not-only:justify-between px-5 py-2">
       {enableNav && (
         <ul className="flex gap-5">
-          {links.map(link => 
-            <li>
-              <Link className="animate-line flex gap-2 group items-center relative dark:text-white" to={link.path}>
-                <FontAwesomeIcon className="group-hover:text-cyan-500 dark:group-hover:text-cyan-300" icon={link.icon} />
-                {link.text}
+          {links.map((link, i) => 
+            <li key={i}>
+              <Link className="flex gap-2 group items-center relative dark:text-white" to={link.path}>
+                <FontAwesomeIcon className="text-2xl group-hover:text-cyan-600 dark:group-hover:text-cyan-300" icon={link.icon} />
+                <span className="relative">
+                  <span className="animate-line">{link.text}</span>
+                </span>
               </Link>
             </li>
           )}
