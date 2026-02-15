@@ -41,8 +41,8 @@ export default function Nav() {
           {links.map((link, i) => 
             <li key={i}>
               <Link className="flex gap-2 group items-center relative dark:text-white" to={link.path}>
-                <span className="block group-hover:hidden"><FontAwesomeIcon className="text-2xl text-indigo-500 group-hover:text-cyan-600 dark:group-hover:text-cyan-300" icon={link.icon} /></span>
-                <span className="hidden group-hover:block"><FontAwesomeIcon className="text-2xl text-indigo-500 group-hover:text-cyan-600 dark:group-hover:text-cyan-300" icon={link.iconHover} /></span>
+                <span className="block group-hover:hidden"><FontAwesomeIcon className="text-2xl text-indigo-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-300" icon={link.icon} /></span>
+                <span className="hidden group-hover:block"><FontAwesomeIcon className="text-2xl text-indigo-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-300" icon={link.iconHover} /></span>
                 <span className="relative">
                   <span className="animate-line animate-line-group font-bold">{link.text}</span>
                 </span>
@@ -51,7 +51,7 @@ export default function Nav() {
           )}
           <li>
             <Link className="flex gap-2 group items-center relative dark:text-white" to={'/flavor-text'} onMouseEnter={() => d6Ref.current?.roll()}>
-                <span className="text-indigo-500">
+                <span className="text-indigo-400">
                   <D6 className="group-hover:text-cyan-600 dark:group-hover:text-cyan-300" size="text-2xl" ref={d6Ref} selfHover={false} />
                 </span>
                 <span className="relative">
