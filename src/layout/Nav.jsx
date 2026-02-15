@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookSkull, faHome, faMoon } from "@fortawesome/free-solid-svg-icons";
+import { faMoon, faDoorClosed, faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 
 import { motion } from "motion/react"
 import { Link } from "react-router-dom";
+import D6 from "../pages/FlavorText/D6";
 
 export default function Nav() {
   const [darkmode, setDarkmode] = useState(() => {
@@ -21,16 +22,13 @@ export default function Nav() {
     }
   }, [darkmode])
   const togglePosition = darkmode ? 'justify-end' : 'justify-start';
+  const d6Ref = useRef(null)
   const links = [
     {
-      icon: faHome,
+      icon: faDoorClosed,
+      iconHover: faDoorOpen,
       path: "/",
       text: "Home",
-    },
-    {
-      icon: faBookSkull,
-      path: "/flavor-text",
-      text: "Flavor Text  ",
     },
   ];
 
@@ -43,13 +41,24 @@ export default function Nav() {
           {links.map((link, i) => 
             <li key={i}>
               <Link className="flex gap-2 group items-center relative dark:text-white" to={link.path}>
-                <FontAwesomeIcon className="text-2xl group-hover:text-cyan-600 dark:group-hover:text-cyan-300" icon={link.icon} />
+                <span className="block group-hover:hidden"><FontAwesomeIcon className="text-2xl text-indigo-500 group-hover:text-cyan-600 dark:group-hover:text-cyan-300" icon={link.icon} /></span>
+                <span className="hidden group-hover:block"><FontAwesomeIcon className="text-2xl text-indigo-500 group-hover:text-cyan-600 dark:group-hover:text-cyan-300" icon={link.iconHover} /></span>
                 <span className="relative">
-                  <span className="animate-line">{link.text}</span>
+                  <span className="animate-line animate-line-group font-bold">{link.text}</span>
                 </span>
               </Link>
             </li>
           )}
+          <li>
+            <Link className="flex gap-2 group items-center relative dark:text-white" to={'/flavor-text'} onMouseEnter={() => d6Ref.current?.roll()}>
+                <span className="text-indigo-500">
+                  <D6 className="group-hover:text-cyan-600 dark:group-hover:text-cyan-300" size="text-2xl" ref={d6Ref} selfHover={false} />
+                </span>
+                <span className="relative">
+                  <span className="animate-line animate-line-group font-bold">Flavor Text</span>
+                </span>
+              </Link>
+          </li>
         </ul>
       )}
       {/* TODO: Move toggle into a separate component once Nav is built out. */}

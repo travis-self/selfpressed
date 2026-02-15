@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Slides from './pages/Slides';
 import Wordle from './pages/Wordle';
 import Blog from './pages/Blog'
-import PostDetail from './pages/GameDesign/Post';
+import PostDetail from './pages/FlavorText/Post';
 
 function App() {
   return (

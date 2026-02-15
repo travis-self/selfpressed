@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Anchor from "../atoms/Anchor";
 import Heading from '../atoms/Heading';
+import D6 from './FlavorText/D6';
 
 const { projectId, dataset } = client.config();
 const urlFor = source =>
@@ -43,11 +44,16 @@ export default function Blog() {
 
   return (
     <>
-      <hgroup className="text-center">
-        <Heading as='h1'>
-          Flavor Text
-        </Heading>
-        <h2 className="mt-1 text-lg">Musings on game design, and Joker&apos;s Dozen game dev diary.</h2>
+      <hgroup className="flex flex-col gap-y-2 md:items-center">
+        <div className="flex gap-x-4 items-end">
+          <div className="text-indigo-500 dark:text-cyan-300">
+            <D6 size="text-5xl" />
+          </div>
+          <Heading as='h1'>
+            Flavor Text
+          </Heading>
+        </div>
+        <h2 className="text-lg md:text-center md:w-1/2">Musings on game design, and the official dev diary for Joker&apos;s Dozen</h2>
       </hgroup>
       <section className='mt-15'>
         <ul className="grid grid-cols-1 gap-y-8">
@@ -55,10 +61,10 @@ export default function Blog() {
             const { isoDate, formatted } = formatDate(post.publishedAt)
             return <li key={i}>
               <article className="relative">
-                <Anchor href={`/flavor-text/${post.slug.current}`}>
+                <Anchor animate={false} href={`/flavor-text/${post.slug.current}`}>
                   <h1 className="inline text-2xl">{post.title}</h1>
                 </Anchor>
-                <time className="block mt-1 text-sm" datetime={isoDate}>{formatted}</time>
+                <time className="block mt-1 text-sm" dateTime={isoDate}>{formatted}</time>
                 <p className="text-base mt-3">
                   {post.excerpt}
                 </p>

@@ -14,8 +14,8 @@
 .dark {
   --interactive-color: var(--color-cyan-300);
   --interactive-hover-color: var(--color-indigo-300);
-  --text-shadow-stroke: var(--color-white);
-  --text-shadow-fill: var(--color-cyan-300);
+  --text-shadow-stroke: var(--color-indigo-300);
+  --text-shadow-fill: var(--color-transparent);
 }
 
 @utility text-clamp {
@@ -54,10 +54,16 @@
     transition: width 500ms ease-in-out;
     width: 0;
   }
+}
 
+.animate-line:not(.animate-line-group) {
   &:is(:focus, :hover)::before {
     width: 100%;
   }
+}
+
+.group:is(:focus, :hover) .animate-line-group::before {
+  width: 100%;
 }
 
 .button-primary,
