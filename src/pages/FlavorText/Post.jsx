@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import imageUrlBuilder from '@sanity/image-url';
 import { PortableText } from '@portabletext/react';
 import { client } from '../../sanity/client';
 import { portableTextComponents } from '../../sanity/PortableTextComponents';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import Anchor from '../../atoms/Anchor'
 
 const { projectId, dataset } = client.config();
 const urlFor = source =>
@@ -12,27 +15,39 @@ const urlFor = source =>
     : null;
 
 const POST_QUERY = `
-  *[_type == "post" && slug.current == $postSlug][0] {
-    _id,
-    title,
-    slug,
-    publishedAt,
-    author-> {
-      name
-    },
-    body,
-    mainImage,
-    categories[]-> {
+  *[_type == "post" && slug.current == $postSlug] {
+    "current": {
       _id,
       title,
-      slug
+      slug,
+      publishedAt,
+      author-> {
+        name
+      },
+      body,
+      "hero": mainImage.asset->url,
+      mainImage,
+      categories[]-> {
+        _id,
+        title,
+        slug
+      }
+    },
+    "prev": *[_type == "post" && publishedAt < ^.publishedAt] | order(publishedAt asc)[0] {
+      slug,
+      title
+    },
+    "next": *[_type == "post" && publishedAt > ^.publishedAt] | order(publishedAt desc)[0] {
+      slug,
+      title
     }
-  }
+  }[0]
 `;
 
 export default function PostDetail() {
   const { postSlug } = useParams();
   const [post, setPost] = useState(null);
+  const [nav, setNav] = useState({prev: null, next: null})
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -40,13 +55,15 @@ export default function PostDetail() {
     client
       .fetch(POST_QUERY, { postSlug })
       .then(data => {
-        setPost(data);
+        setPost(data.current);
+        setNav({prev: data.prev, next: data.next});
         setLoading(false);
       })
       .catch(err => {
         setError(err.message);
         setLoading(false);
       });
+
   }, [postSlug]);
 
   if (loading) return <div className='p-8'>Loading...</div>;
@@ -54,25 +71,24 @@ export default function PostDetail() {
   if (!post) return <div className='p-8'>Post not found</div>;
 
   const imageUrl = post.mainImage
-    ? urlFor(post.mainImage)?.width(550).height(310).url()
+    ? urlFor(post.mainImage)?.width(768).height(432).url()
     : null;
 
   return (
+    <>
     <article className='md:p-8'>
-      <Link to='/flavor-text' className='mb-8 inline-block hover:underline'>
-        ← Back to blog
-      </Link>
-      {imageUrl && (
+      <Anchor href='/flavor-text' className='gap-x-1 inline-flex items-center mb-8'>
+        <FontAwesomeIcon icon={faArrowLeft} />Back to blog
+      </Anchor>
+      {post.hero && (
         <img
-          src={imageUrl}
-          alt={post.title}
+          src={`${post.hero}?w=768&q=100`}
           className='mb-8 aspect-video rounded-xl'
-          width='550'
-          height='310'
+          width='768'
         />
       )}
       <h1 className='mb-4 text-4xl font-bold'>{post.title}</h1>
-      <div class='flex gap-2 items-center'>
+      <div className='flex gap-2 items-center'>
         {post.author && (
           <>
             <p>By {post.author.name}</p>
@@ -90,5 +106,14 @@ export default function PostDetail() {
         )}
       </div>
     </article>
+    {(nav.prev || nav.next)
+      ? 
+      <nav className="flex justify-between">
+        {nav.prev ? <Anchor className="flex gap-x-2 items-center" href={`/flavor-text/${nav.prev.slug.current}`}><FontAwesomeIcon icon={faArrowLeft} /><span>Prev: {nav.prev.title}</span></Anchor> : ''}
+        {nav.next ? <Anchor className="flex flex-row-reverse gap-x-2 items-center ml-auto" href={`/flavor-text/${nav.next.slug.current}`}><FontAwesomeIcon icon={faArrowRight} /><span>Next: {nav.next.title}</span></Anchor> : ''}
+      </nav>
+      : ''
+    }
+    </>
   );
 }
