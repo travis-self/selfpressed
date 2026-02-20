@@ -54,9 +54,6 @@
     ],
     "*.{json,css,scss,md,yml,yaml}": [
       "prettier --write"
-    ],
-    "package.json": [
-      "npm audit fix --audit-level moderate"
     ]
   }
 }
