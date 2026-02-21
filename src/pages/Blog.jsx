@@ -53,7 +53,7 @@ export default function Blog() {
             Flavor Text
           </Heading>
         </div>
-        <h2 className="text-lg md:text-center md:w-1/2">Musings on game design, and the official dev diary for Joker&apos;s Dozen</h2>
+        <h2 className="text-lg md:text-center md:w-1/2">Musings on game design, and the official dev diary for Baker&apos;s Dozen</h2>
       </hgroup>
       <section className='mt-15'>
         <ul className="grid grid-cols-1 gap-y-8">
