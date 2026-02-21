@@ -45,9 +45,9 @@ export default function Blog() {
   return (
     <>
       <hgroup className="flex flex-col gap-y-2 md:items-center">
-        <div className="flex gap-x-4 items-end">
+        <div className="flex gap-x-4 items-center">
           <div className="text-indigo-500 dark:text-cyan-300">
-            <D6 size="text-5xl" />
+            <D6 size="text-[clamp(2.5rem,5vw,3.5rem)]" />
           </div>
           <Heading as='h1'>
             Flavor Text

@@ -107,11 +107,13 @@ export default function PostDetail() {
       </div>
     </article>
     {(nav.prev || nav.next)
-      ? 
-      <nav className="mt-10 flex justify-between">
-        {nav.prev ? <Anchor className="flex gap-x-2 items-center dark:hover:text-white" href={`/flavor-text/${nav.prev.slug.current}`}><FontAwesomeIcon icon={faArrowLeft} /><span>Prev: {nav.prev.title}</span></Anchor> : ''}
-        {nav.next ? <Anchor className="flex flex-row-reverse gap-x-2 items-center ml-auto dark:hover:text-white" href={`/flavor-text/${nav.next.slug.current}`}><FontAwesomeIcon icon={faArrowRight} /><span>Next: {nav.next.title}</span></Anchor> : ''}
+      ?
+      <div class="flex flex-col gap-y-5 mt-10 border-t border-slate-400 pt-8">
+      <nav aria-label="Continue reading." className="flex flex-col-reverse gap-y-8 justify-between md:flex-row md:gap-x-10">
+        {nav.prev ? <Anchor className="flex gap-x-5 items-center dark:hover:text-white" href={`/flavor-text/${nav.prev.slug.current}`}><FontAwesomeIcon className="text-indigo-400 flex-auto grow-0 shrink-0 text-2xl" icon={faArrowLeft} /><span>{nav.prev.title}</span></Anchor> : ''}
+        {nav.next ? <Anchor className="flex flex-row-reverse gap-x-5 items-center text-right dark:hover:text-white md:ml-auto" href={`/flavor-text/${nav.next.slug.current}`}><FontAwesomeIcon className="text-indigo-400 flex-auto grow-0 shrink-0 text-2xl" icon={faArrowRight} /><span>{nav.next.title}</span></Anchor> : ''}
       </nav>
+      </div>
       : ''
     }
     </>
