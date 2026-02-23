@@ -16,32 +16,35 @@ const urlFor = source =>
 
 const POST_QUERY = `
   *[_type == "post" && slug.current == $postSlug] {
-    "current": {
+    _id,
+    title,
+    slug,
+    publishedAt,
+    author-> {
+      name
+    },
+    body,
+    "hero": mainImage.asset->url,
+    mainImage,
+    categories[]-> {
       _id,
       title,
-      slug,
-      publishedAt,
-      author-> {
-        name
-      },
-      body,
-      "hero": mainImage.asset->url,
-      mainImage,
-      categories[]-> {
-        _id,
-        title,
-        slug
-      }
-    },
-    "prev": *[_type == "post" && publishedAt < ^.publishedAt] | order(publishedAt asc)[0] {
+      slug
+    }
+  }[0]
+`;
+
+const PREV_NEXT_QUERY = `
+  {
+    "prev": *[_type == "post" && publishedAt < $publishedAt] | order(publishedAt desc)[0] {
       slug,
       title
     },
-    "next": *[_type == "post" && publishedAt > ^.publishedAt] | order(publishedAt desc)[0] {
+    "next": *[_type == "post" && publishedAt > $publishedAt] | order(publishedAt asc)[0] {
       slug,
       title
     }
-  }[0]
+  }
 `;
 
 export default function PostDetail() {
@@ -54,9 +57,12 @@ export default function PostDetail() {
   useEffect(() => {
     client
       .fetch(POST_QUERY, { postSlug })
-      .then(data => {
-        setPost(data.current);
-        setNav({prev: data.prev, next: data.next});
+      .then(current => {
+        setPost(current);
+        return client.fetch(PREV_NEXT_QUERY, { publishedAt: current.publishedAt });
+      })
+      .then(navData => {
+        setNav({prev: navData.prev, next: navData.next});
         setLoading(false);
       })
       .catch(err => {
