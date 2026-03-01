@@ -1,8 +1,15 @@
 import { createClient } from '@sanity/client';
 
-export const client = createClient({
+const config = {
   projectId: import.meta.env.VITE_SANITY_PROJECT_ID,
   dataset: import.meta.env.VITE_SANITY_DATASET,
   apiVersion: '2025-02-19',
-  useCdn: true,
+};
+
+export const client = createClient({ ...config, useCdn: true });
+export const previewClient = createClient({
+  ...config,
+  useCdn: false,
+  perspective: 'previewDrafts',
+  token: import.meta.env.VITE_SANITY_PREVIEW_TOKEN,
 });
