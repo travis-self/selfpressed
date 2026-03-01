@@ -1,10 +1,11 @@
 import imageUrlBuilder from '@sanity/image-url';
 import { client } from './client';
 import Anchor from '../atoms/Anchor';
+import Gallery from '../pages/FlavorText/molecules/Gallery';
 
 const builder = imageUrlBuilder(client);
 
-function urlFor(source) {
+export function urlFor(source) {
   return builder.image(source);
 }
 
@@ -38,10 +39,15 @@ export const portableTextComponents = {
         </figure>
       );
     },
+    gallery: ({ value }) => <Gallery value={value} />,
   },
   marks: {
     em: ({ children }) => <em className='italic font-bold'>{children}</em>,
-    link: ({ value, children }) => <Anchor className="text-cyan-700" href={value}>{children}</Anchor>,
+    link: ({ value, children }) => (
+      <Anchor className='text-cyan-700' href={value}>
+        {children}
+      </Anchor>
+    ),
     strong: ({ children }) => <strong className='font-bold'>{children}</strong>,
   },
 };
