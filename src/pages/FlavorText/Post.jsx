@@ -16,7 +16,15 @@ const POST_QUERY = `
     author-> {
       name
     },
-    body,
+    "body": body[] {
+      ...,
+      markDefs[] {
+        ...,
+        "internal": internal-> {
+          "slug": slug.current
+        }
+      }
+    },
     "hero": mainImage.asset->url,
     mainImage,
     categories[]-> {

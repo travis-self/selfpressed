@@ -35,16 +35,15 @@ export default function Blog() {
 
   return (
     <>
-      <hgroup className='flex flex-col gap-y-2 md:items-center'>
+      <hgroup className='flex flex-col md:items-center'>
         <div className='flex gap-x-4 items-center'>
           <div className='text-indigo-500 dark:text-cyan-300'>
             <D6 size='text-[clamp(2.5rem,5vw,3.5rem)]' />
           </div>
           <Heading as='h1'>Flavor Text</Heading>
         </div>
-        <h2 className='text-lg md:text-center md:w-1/2'>
-          Musings on game design, and the official dev diary for Baker&apos;s
-          Dozen
+        <h2 className='text-lg md:text-center'>
+          Musings on game design and UX engineering.
         </h2>
       </hgroup>
       <section className='mt-15'>

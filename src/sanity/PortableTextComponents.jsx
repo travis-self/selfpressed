@@ -43,11 +43,16 @@ export const portableTextComponents = {
   },
   marks: {
     em: ({ children }) => <em className='italic font-bold'>{children}</em>,
-    link: ({ value, children }) => (
-      <Anchor className='text-cyan-700' href={value}>
-        {children}
-      </Anchor>
-    ),
+    link: ({ value, children }) => {
+      const href = value.internal
+        ? `/flavor-text/${value.internal.slug}`
+        : value.external;
+      return (
+        <Anchor className='text-cyan-700' href={href}>
+          {children}
+        </Anchor>
+      );
+    },
     strong: ({ children }) => <strong className='font-bold'>{children}</strong>,
   },
 };
